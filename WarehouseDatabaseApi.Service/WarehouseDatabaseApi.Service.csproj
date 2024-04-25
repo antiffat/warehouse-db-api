@@ -15,7 +15,6 @@
 
     <ItemGroup>
       <Folder Include="src\WarehouseDatabaseApi.Service.Application\" />
-      <Folder Include="src\WarehouseDatabaseApi.Service.Entities\" />
       <Folder Include="src\WarehouseDatabaseApi.Service.Infastructure\" />
     </ItemGroup>
 
