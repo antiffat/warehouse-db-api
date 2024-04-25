@@ -69,4 +69,20 @@ public class WarehouseService
             return count > 0;
         }
     }
+
+    public bool IsOrderCompleted(int idOrder)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            var command = new SqlCommand("SELECT COUNT(1) FROM Product_Warehouse WHERE IdOrder = @idOrder", connection);
+            command.Parameters.AddWithValue("@idOrder", idOrder);
+            
+            connection.Open();
+            int count = (int)command.ExecuteScalar();
+            connection.Close();
+
+            // if count is 0, then no row exists, and the order is not completed.
+            return count == 0;
+        }
+    }
 }
