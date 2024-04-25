@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseDatabaseApi", "WarehouseDatabaseApi\WarehouseDatabaseApi.csproj", "{7EA86665-A86E-4400-8256-8E7CA0A7721E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseDatabaseApi.Service", "WarehouseDatabaseApi.Service\WarehouseDatabaseApi.Service.csproj", "{7EA86665-A86E-4400-8256-8E7CA0A7721E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
