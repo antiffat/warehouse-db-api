@@ -27,6 +27,26 @@ public class WarehouseService
         }
     }
 
+    public bool WarehouseExists(int warehouseId)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            var command = new SqlCommand("SELECT COUNT(1) FROM  Warehouse WHERE IdWarehouse = @warehouseId",
+                connection);
+            command.Parameters.AddWithValue("@warehouseId", warehouseId);
+            
+            connection.Open();
+            int count = (int)command.ExecuteScalar();
+            connection.Close();
+
+            return count > 0;
+        }
+    }
+    
+    public bool IsAmountValid(int amount)
+    {
+        return amount > 0;
+    }
 
     
 }
