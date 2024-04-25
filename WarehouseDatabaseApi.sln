@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseDatabaseApi.Service", "WarehouseDatabaseApi.Service\WarehouseDatabaseApi.Service.csproj", "{7EA86665-A86E-4400-8256-8E7CA0A7721E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61B61152-B4B3-485D-864B-83E5DC8A1F52}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +14,5 @@ Global
 		{7EA86665-A86E-4400-8256-8E7CA0A7721E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7EA86665-A86E-4400-8256-8E7CA0A7721E} = {61B61152-B4B3-485D-864B-83E5DC8A1F52}
 	EndGlobalSection
 EndGlobal

@@ -13,4 +13,14 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="src\WarehouseDatabaseApi.Service.Application\" />
+      <Folder Include="src\WarehouseDatabaseApi.Service.Entities\" />
+      <Folder Include="src\WarehouseDatabaseApi.Service.Infastructure\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="src\WarehouseDatabaseApi.Service.API\Properties\launchSettings.json" />
+    </ItemGroup>
+
 </Project>
