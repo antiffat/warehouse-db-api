@@ -1,4 +1,6 @@
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WarehouseDatabaseApi.Services;
 
@@ -104,6 +106,45 @@ public class WarehouseService
             connection.Close();
 
             // if rows affected is 1, then the row was updated successfully
+            return rowsAffected == 1;
+        }
+    }
+
+    public bool InsertProductWarehouseRecord(int idOrder, int idProduct, int idWarehouse, int amount)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            // first we retrieve the price of the product
+            var priceCommand = new SqlCommand("SELECT Price FROM Product WHERE IdProduct = @idProduct", connection);
+            priceCommand.Parameters.AddWithValue("idProduct", idProduct);
+            
+            connection.Open();
+            var priceObject = priceCommand.ExecuteScalar();
+            connection.Close();
+
+            if (priceObject == null)
+            {
+                return false; // product not found or the price is null
+            }
+
+            decimal unitPrice = (decimal)priceObject;
+            decimal totalPrice = unitPrice * amount;
+
+            var insertCommand = new SqlCommand(@"
+                INSERT INTO Product_Warehouse (IdOrder, IdProduct, IdWarehouse, Amount, Price, CreatedAt)
+                VALUES (@idOrder, @idProduct, @idWarehouse, @amount, @price, @createdAt)", connection);
+            
+            insertCommand.Parameters.AddWithValue("@idOrder", idOrder);
+            insertCommand.Parameters.AddWithValue("@idProduct", idProduct);
+            insertCommand.Parameters.AddWithValue("@idWarehouse", idWarehouse);
+            insertCommand.Parameters.AddWithValue("@amount", amount);
+            insertCommand.Parameters.AddWithValue("@price", totalPrice);
+            insertCommand.Parameters.AddWithValue("@createdAt", DateTime.Now);
+
+            connection.Open();
+            int rowsAffected = insertCommand.ExecuteNonQuery();
+            connection.Close();
+
             return rowsAffected == 1;
         }
     }
