@@ -14,12 +14,4 @@
         <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="src\WarehouseDatabaseApi.Service.Infastructure\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="src\WarehouseDatabaseApi.Service.API\Properties\launchSettings.json" />
-    </ItemGroup>
-
 </Project>

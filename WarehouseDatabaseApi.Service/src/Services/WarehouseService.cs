@@ -48,5 +48,26 @@ public class WarehouseService
         return amount > 0;
     }
 
-    
+    public bool PurchaseOrderExists(int productId, int amount, DateTime requestCreatedAt)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            var command = new SqlCommand(@"
+                SELECT COUNT(1)
+                FROM [Order]
+                WHERE IdProduct = @productId
+                AND Amount = @amount
+                AND CreatedAt < @requestCreatedAt", connection);
+
+            command.Parameters.AddWithValue("@productId", productId);
+            command.Parameters.AddWithValue("@amount", amount);
+            command.Parameters.AddWithValue("@requestCreatedAt", requestCreatedAt);
+            
+            connection.Open();
+            int count = (int)command.ExecuteScalar();
+            connection.Close();
+
+            return count > 0;
+        }
+    }
 }
