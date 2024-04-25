@@ -85,4 +85,26 @@ public class WarehouseService
             return count == 0;
         }
     }
+
+    public bool UpdateOrderFulfilledAt(int idOrder)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            var command = new SqlCommand(@"
+                UPDATE [Order]
+                SET FulfilledAt = @fulfilledAt
+                WHERE IdOrder = @idOrder
+                AND FulfilledAt IS NULL", connection);
+
+            command.Parameters.AddWithValue("@idOrder", idOrder);
+            command.Parameters.AddWithValue("@fulfilledAt", DateTime.Now);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.Close();
+
+            // if rows affected is 1, then the row was updated successfully
+            return rowsAffected == 1;
+        }
+    }
 }

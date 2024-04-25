@@ -16,4 +16,7 @@ public class WarehouseOperationRequest
     
     [Required]
     public DateTime CreatedAt { get; set; }
+    
+    [Required]
+    public int IdOrder { get; set; }
 }

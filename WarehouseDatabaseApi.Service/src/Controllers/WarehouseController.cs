@@ -32,6 +32,16 @@ namespace WarehouseDatabaseApi.Controllers
             {
                 return BadRequest("No matching purchase order found, or the order date is not valid.");
             }
+
+            if (_warehouseService.IsOrderCompleted(request.IdOrder))
+            {
+                return BadRequest("The order has already been completed");
+            }
+            
+            if (!_warehouseService.UpdateOrderFulfilledAt(request.IdOrder))
+            {
+                return StatusCode(500, "An error occured while updating the order status.");
+            }
             
             return Ok("Product added to warehouse successfully.");
         }
