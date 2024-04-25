@@ -43,13 +43,14 @@ namespace WarehouseDatabaseApi.Controllers
                 return StatusCode(500, "An error occured while updating the order status.");
             }
 
-            if (!_warehouseService.InsertProductWarehouseRecord(request.IdOrder, request.IdProduct, request.IdWarehouse,
-                    request.Amount))
+            var insertedId = _warehouseService.InsertProductWarehouseRecord(request.IdOrder, request.IdProduct,
+                request.IdWarehouse, request.Amount);
+            if (!insertedId.HasValue)
             {
                 return StatusCode(500, "An error occured while inserting the product into the warehouse.");
             }
             
-            return Ok("Product added to warehouse successfully.");
+            return Ok(new { Message = "Product successfully added to the warehouse.", IdProductWarehouse = insertedId.Value });
         }
     }  
 }

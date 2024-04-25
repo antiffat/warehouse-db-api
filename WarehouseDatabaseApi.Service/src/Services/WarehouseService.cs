@@ -110,7 +110,7 @@ public class WarehouseService
         }
     }
 
-    public bool InsertProductWarehouseRecord(int idOrder, int idProduct, int idWarehouse, int amount)
+    public int? InsertProductWarehouseRecord(int idOrder, int idProduct, int idWarehouse, int amount)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
@@ -124,7 +124,7 @@ public class WarehouseService
 
             if (priceObject == null)
             {
-                return false; // product not found or the price is null
+                return null; // product not found or the price is null
             }
 
             decimal unitPrice = (decimal)priceObject;
@@ -132,7 +132,8 @@ public class WarehouseService
 
             var insertCommand = new SqlCommand(@"
                 INSERT INTO Product_Warehouse (IdOrder, IdProduct, IdWarehouse, Amount, Price, CreatedAt)
-                VALUES (@idOrder, @idProduct, @idWarehouse, @amount, @price, @createdAt)", connection);
+                VALUES (@idOrder, @idProduct, @idWarehouse, @amount, @price, @createdAt);
+                SELECT SCOPE_IDENTITY();", connection);
             
             insertCommand.Parameters.AddWithValue("@idOrder", idOrder);
             insertCommand.Parameters.AddWithValue("@idProduct", idProduct);
@@ -141,11 +142,12 @@ public class WarehouseService
             insertCommand.Parameters.AddWithValue("@price", totalPrice);
             insertCommand.Parameters.AddWithValue("@createdAt", DateTime.Now);
 
-            connection.Open();
-            int rowsAffected = insertCommand.ExecuteNonQuery();
+            connection.Open(); 
+            var insertedId = insertCommand.ExecuteScalar();
             connection.Close();
 
-            return rowsAffected == 1;
+            return insertedId != DBNull.Value ? Convert.ToInt32(insertedId) : (int?)null;
         }
     }
+    
 }
