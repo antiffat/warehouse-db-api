@@ -1,7 +1,6 @@
-namespace WarehouseDatabaseApi.WarehouseDatabaseApi.Service.Application.Services;
-using System;
-using System.Data;
 using System.Data.SqlClient;
+
+namespace WarehouseDatabaseApi.Services;
 
 public class WarehouseService
 {
