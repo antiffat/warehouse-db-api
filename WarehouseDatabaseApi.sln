@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseDatabaseApi", "WarehouseDatabaseApi\WarehouseDatabaseApi.csproj", "{7EA86665-A86E-4400-8256-8E7CA0A7721E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EA86665-A86E-4400-8256-8E7CA0A7721E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA86665-A86E-4400-8256-8E7CA0A7721E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA86665-A86E-4400-8256-8E7CA0A7721E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA86665-A86E-4400-8256-8E7CA0A7721E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
